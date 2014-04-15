@@ -14,8 +14,11 @@ let $LANG='en'
 if has('win32')
     set guifont=Consolas:h11:cANSI
 elseif has('gui_macvim')
-    set guifont=Consolas:h14
+"    set guifont=Consolas:h14
+    set guifont=Anonymous\ Pro\ for\ Powerline:h15
 endif
+
+let g:airline_powerline_fonts = 1
 
 set guioptions+=c
 set guioptions-=m
