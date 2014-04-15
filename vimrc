@@ -11,7 +11,12 @@ filetype indent on
 set langmenu=en_US.UTF-8
 let $LANG='en'
 
-set guifont=Consolas:h11:cANSI
+if has('win32')
+    set guifont=Consolas:h11:cANSI
+elseif has('gui_macvim')
+    set guifont=Consolas:h14
+endif
+
 set guioptions+=c
 set guioptions-=m
 set guioptions-=T
