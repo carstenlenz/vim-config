@@ -10,15 +10,18 @@ filetype indent on
 " GUI / Look & Feel
 set langmenu=en_US.UTF-8
 let $LANG='en'
+set encoding=utf-8
 
 if has('win32')
-    set guifont=Consolas:h11:cANSI
+"    set guifont=Consolas:h11:cANSI
+    set guifont=Powerline_Consolas:h11:cANSI
 elseif has('gui_macvim')
 "    set guifont=Consolas:h14
     set guifont=Anonymous\ Pro\ for\ Powerline:h15
 endif
 
 let g:airline_powerline_fonts = 1
+let g:airline_theme = 'powerlineish'
 
 set guioptions+=c
 set guioptions-=m
