@@ -7,7 +7,7 @@ filetype on
 filetype plugin on
 filetype indent on
 
-" GUI / Look & Feel
+" Force my gvim on windoze into english 
 set langmenu=en_US.UTF-8
 let $LANG='en'
 set encoding=utf-8
@@ -17,11 +17,14 @@ if has('win32')
     set guifont=Powerline_Consolas:h11:cANSI
 elseif has('gui_macvim')
 "    set guifont=Consolas:h14
-    set guifont=Anonymous\ Pro\ for\ Powerline:h15
+"    set guifont=Anonymous\ Pro\ for\ Powerline:h15
+    set guifont=Powerline\ Consolas:h14
 endif
 
+" Enable Airline with tabline
 let g:airline_powerline_fonts = 1
 let g:airline_theme = 'powerlineish'
+let g:airline#extensions#tabline#enabled = 1
 
 set guioptions+=c
 set guioptions-=m
@@ -29,10 +32,12 @@ set guioptions-=T
 set guioptions-=r
 set guioptions-=L
 
-colorscheme xoria256
+" other schemes: xoria256, Tomorrow-Night
+colorscheme Tomorrow-Night
 
 syntax on
 
+" relativenumber is confusing to me
 " set relativenumber " centers '0' at cursor 
 set number " show linenumbers
 
@@ -80,4 +85,8 @@ let mapleader = ","
 nmap <silent> ,ev :e $MYVIMRC<CR>
 nmap <silent> ,sv :so $MYVIMRC<CR>
 nmap <silent> ,t :NERDTreeToggle<CR>
+nmap <F5> :buffers<CR>:buffer<Space>
+
+" Use CTRL-E to replace the original ',' mapping
+nnoremap <C-E> ,
 
