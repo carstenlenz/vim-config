@@ -40,3 +40,15 @@
 [submodule "bundle/vim-airline"]
 	path = bundle/vim-airline
 	url = https://github.com/bling/vim-airline
+[submodule "vim-javascript-syntax"]
+	path = vim-javascript-syntax
+	url = https://github.com/jelera/vim-javascript-syntax
+[submodule "tlib_vim"]
+	path = tlib_vim
+	url = https://github.com/tomtom/tlib_vim.git
+[submodule "vim-addon-mw-utils"]
+	path = vim-addon-mw-utils
+	url = https://github.com/MarcWeber/vim-addon-mw-utils.git
+[submodule "vim-snipmate"]
+	path = vim-snipmate
+	url = https://github.com/garbas/vim-snipmate.git
