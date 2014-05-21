@@ -6,8 +6,7 @@ execute pathogen#infect()
 execute pathogen#helptags()
 
 filetype on
-filetype plugin on
-filetype indent on
+filetype plugin indent on
 
 " Force my gvim on windoze into english 
 set langmenu=en_US.UTF-8
@@ -92,3 +91,5 @@ nmap <F5> :buffers<CR>:buffer<Space>
 " Use CTRL-E to replace the original ',' mapping
 nnoremap <C-E> ,
 
+" Custom file extensions
+au BufRead,BufNewFile *.gradle set filetype=groovy
