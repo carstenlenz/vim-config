@@ -22,6 +22,9 @@ elseif has('gui_macvim')
     set guifont=Powerline\ Consolas:h14
 endif
 
+"
+set omnifunc=syntaxcomplete#Complete
+
 " Enable Airline with tabline
 let g:airline_powerline_fonts = 1
 let g:airline_theme = 'powerlineish'
@@ -32,6 +35,8 @@ set guioptions-=m
 set guioptions-=T
 set guioptions-=r
 set guioptions-=L
+
+set t_Co=256
 
 " other schemes: xoria256, Tomorrow-Night
 colorscheme Tomorrow-Night
