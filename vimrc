@@ -80,18 +80,24 @@ set ignorecase
 set smartcase
 set hlsearch
 set incsearch
-nmap <silent> ,/ :nohlsearch<CR>
 
 set ch=2
 set vb
 set virtualedit=all
 
+" Plugin Options
+let delimitMate_expand_cr=1
+
 let mapleader = ","
 
-nmap <silent> ,ev :e $MYVIMRC<CR>
-nmap <silent> ,sv :so $MYVIMRC<CR>
-nmap <silent> ,t :NERDTreeToggle<CR>
-nmap <F5> :buffers<CR>:buffer<Space>
+nnoremap <silent> <leader>ev :vsplit $MYVIMRC<CR>
+nnoremap <silent> <leader>sv :so $MYVIMRC<CR>
+nnoremap <silent> <leader>t :NERDTreeToggle<CR>
+nnoremap <F5> :buffers<CR>:buffer<Space>
+nnoremap <silent> <leader>/ :nohlsearch<CR>
+nnoremap <silent> <leader>e :CtrlPBuffer<CR>
+
+inoremap <silent> <C-L> <ESC>A
 
 " Use CTRL-E to replace the original ',' mapping
 nnoremap <C-E> ,
