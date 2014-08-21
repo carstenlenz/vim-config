@@ -40,6 +40,8 @@ set t_Co=256
 
 " other schemes: xoria256, Tomorrow-Night
 colorscheme Tomorrow-Night
+" set background=dark
+" colorscheme solarized
 
 syntax on
 
@@ -95,7 +97,7 @@ nnoremap <silent> <leader>sv :so $MYVIMRC<CR>
 nnoremap <silent> <leader>t :NERDTreeToggle<CR>
 nnoremap <F5> :buffers<CR>:buffer<Space>
 nnoremap <silent> <leader>/ :nohlsearch<CR>
-nnoremap <silent> <leader>e :CtrlPBuffer<CR>
+nnoremap <silent> <leader>b :CtrlPBuffer<CR>
 
 inoremap <silent> <C-L> <ESC>A
 
@@ -104,3 +106,7 @@ nnoremap <C-E> ,
 
 " Custom file extensions
 au BufRead,BufNewFile *.gradle set filetype=groovy
+au FileType yaml setlocal sw=2 sts=2 et
+au FileType ruby setlocal sw=2 sts=2 et
+
+nnoremap <silent> <leader>w :bp \|sp \|bn \|bd <CR>
