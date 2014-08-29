@@ -110,3 +110,8 @@ au FileType yaml setlocal sw=2 sts=2 et
 au FileType ruby setlocal sw=2 sts=2 et
 
 nnoremap <silent> <leader>w :bp \|sp \|bn \|bd <CR>
+
+" au InsertLeave * hi Cursor guibg=red
+" au InsertEnter * hi Cursor guibg=green
+highlight Cursor guibg=orange guifg=black
+highlight Search guibg=purple guifg=NONE
