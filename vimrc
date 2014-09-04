@@ -137,6 +137,7 @@ nnoremap <C-E> ,
 au BufRead,BufNewFile *.gradle set filetype=groovy
 au FileType yaml setlocal sw=2 sts=2 et
 au FileType ruby setlocal sw=2 sts=2 et
+au BufRead,BufNewFile *.ad set filetype=asciidoc
 
 nnoremap <silent> <leader>w :bp \|sp \|bn \|bd <CR>
 
