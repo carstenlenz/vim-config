@@ -2,10 +2,39 @@
 set nocompatible  
 
 filetype off
-execute pathogen#infect()
-execute pathogen#helptags()
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 
-filetype on
+Plugin 'gmarik/Vundle.vim'
+Plugin 'kien/ctrlp.vim.git'
+Plugin 'Raimondi/delimitMate'
+Plugin 'mattn/emmet-vim/'
+Plugin 'mattn/gist-vim'
+Plugin 'scrooloose/nerdcommenter.git'
+Plugin 'crooloose/nerdtree.git'
+Plugin 'vim-scripts/paredit.vim'
+Plugin 'kien/rainbow_parentheses.vim'
+Plugin 'ervandew/supertab'
+Plugin 'scrooloose/syntastic'
+Plugin 'majutsushi/tagbar'
+Plugin 'tomtom/tlib_vim.git'
+Plugin 'MarcWeber/vim-addon-mw-utils.git'
+Plugin 'bling/vim-airline'
+Plugin 'tpope/vim-classpath.git'
+Plugin 'guns/vim-clojure-static.git'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'Lokaltog/vim-easymotion'
+Plugin 'tpope/vim-fireplace.git'
+Plugin 'tpope/vim-fugitive'
+Plugin 'jelera/vim-javascript-syntax'
+Plugin 'garbas/vim-snipmate.git'
+Plugin 'honza/vim-snippets.git'
+Plugin 'mattn/webapi-vim'
+
+call vundle#end()
+" execute pathogen#infect()
+" execute pathogen#helptags()
+
 filetype plugin indent on
 
 " Force my gvim on windoze into english 
