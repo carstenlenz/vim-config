@@ -8,10 +8,10 @@ call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 Plugin 'kien/ctrlp.vim.git'
 Plugin 'Raimondi/delimitMate'
-Plugin 'mattn/emmet-vim/'
+Plugin 'mattn/emmet-vim'
 Plugin 'mattn/gist-vim'
 Plugin 'scrooloose/nerdcommenter.git'
-Plugin 'crooloose/nerdtree.git'
+Plugin 'scrooloose/nerdtree.git'
 Plugin 'vim-scripts/paredit.vim'
 Plugin 'kien/rainbow_parentheses.vim'
 Plugin 'ervandew/supertab'
@@ -30,6 +30,10 @@ Plugin 'jelera/vim-javascript-syntax'
 Plugin 'garbas/vim-snipmate.git'
 Plugin 'honza/vim-snippets.git'
 Plugin 'mattn/webapi-vim'
+Plugin 'tpope/vim-surround'
+Plugin 'dagwieers/asciidoc-vim'
+Plugin 'xoria256.vim'
+Plugin 'ChrisKempson/Tomorrow-Theme', {'rtp': 'vim/'}
 
 call vundle#end()
 " execute pathogen#infect()
