@@ -1,2 +1,5 @@
 .DS_Store
 .netrwhist
+bundle/paredit.vim/doc/tags
+bundle/vim-clojure-static/doc/tags
+
