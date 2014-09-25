@@ -24,6 +24,9 @@ Plugin 'tpope/vim-classpath.git'
 Plugin 'guns/vim-clojure-static.git'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'Lokaltog/vim-easymotion'
+Plugin 'tpope/vim-leiningen.git'
+Plugin 'tpope/vim-projectionist.git'
+Plugin 'tpope/vim-dispatch.git'
 Plugin 'tpope/vim-fireplace.git'
 Plugin 'tpope/vim-fugitive'
 Plugin 'jelera/vim-javascript-syntax'
@@ -123,6 +126,8 @@ set virtualedit=all
 " Plugin Options
 let delimitMate_expand_cr=1
 let loaded_delimitMate=1
+
+let g:paredit_smartjump=1
 
 let mapleader = ","
 
