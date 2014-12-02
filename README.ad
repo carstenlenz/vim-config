@@ -1,0 +1,9 @@
+= My Vim Config (TM)
+
+== Fresh Install
+[source,bash]
+----
+git clone httsp://github.com/carstenlenz/vim-config ~/.vim
+git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+----
+
