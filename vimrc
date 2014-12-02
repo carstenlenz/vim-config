@@ -12,7 +12,9 @@ Plugin 'mattn/emmet-vim'
 Plugin 'mattn/gist-vim'
 Plugin 'scrooloose/nerdcommenter.git'
 Plugin 'scrooloose/nerdtree.git'
-Plugin 'vim-scripts/paredit.vim'
+" Plugin 'vim-scripts/paredit.vim'
+Plugin 'tpope/vim-sexp-mappings-for-regular-people.git'
+Plugin 'guns/vim-sexp'
 Plugin 'kien/rainbow_parentheses.vim'
 Plugin 'ervandew/supertab'
 Plugin 'scrooloose/syntastic'
@@ -22,6 +24,7 @@ Plugin 'MarcWeber/vim-addon-mw-utils.git'
 Plugin 'bling/vim-airline'
 Plugin 'tpope/vim-classpath.git'
 Plugin 'guns/vim-clojure-static.git'
+Plugin 'guns/vim-clojure-highlight.git'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'Lokaltog/vim-easymotion'
 Plugin 'tpope/vim-leiningen.git'
@@ -37,6 +40,7 @@ Plugin 'tpope/vim-surround'
 Plugin 'dagwieers/asciidoc-vim'
 Plugin 'xoria256.vim'
 Plugin 'ChrisKempson/Tomorrow-Theme', {'rtp': 'vim/'}
+Plugin 'chrisbra/csv.vim'
 
 call vundle#end()
 " execute pathogen#infect()
@@ -125,7 +129,7 @@ set virtualedit=all
 
 " Plugin Options
 let delimitMate_expand_cr=1
-let loaded_delimitMate=1
+" let loaded_delimitMate=1
 
 let g:paredit_smartjump=1
 
@@ -138,6 +142,8 @@ nnoremap <F5> :buffers<CR>:buffer<Space>
 nnoremap <silent> <leader>/ :nohlsearch<CR>
 nnoremap <silent> <leader>b :CtrlPBuffer<CR>
 
+cmap w!! w !sudo tee > /dev/null %
+
 inoremap <silent> <C-L> <ESC>A
 
 " Use CTRL-E to replace the original ',' mapping
@@ -149,6 +155,7 @@ au FileType yaml setlocal sw=2 sts=2 et
 au FileType ruby setlocal sw=2 sts=2 et
 au BufRead,BufNewFile *.ad set filetype=asciidoc
 au FileType asciidoc setlocal textwidth=80
+autocmd filetype crontab setlocal nobackup nowritebackup
 
 nnoremap <silent> <leader>w :bp \|sp \|bn \|bd <CR>
 
