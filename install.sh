@@ -4,6 +4,6 @@ if [[ -d $HOME/.vim ]]; then
     exit 1
 fi
 git clone https://github.com/carstenlenz/vim-config $HOME/.vim
+ln -s $HOME/.vim/vimrc $HOME/.vimrc
 git clone https://github.com/gmarik/Vundle.vim $HOME/.vim/bundle/Vundle.vim
 vim +PluginInstall +qall
-ln -s $HOME/.vim/vimrc $HOME/.vimrc
