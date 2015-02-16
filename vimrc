@@ -12,7 +12,7 @@ Plugin 'mattn/emmet-vim'
 Plugin 'mattn/gist-vim'
 Plugin 'scrooloose/nerdcommenter.git'
 Plugin 'scrooloose/nerdtree.git'
-" Plugin 'vim-scripts/paredit.vim'
+Plugin 'tpope/vim-repeat.git'
 Plugin 'tpope/vim-sexp-mappings-for-regular-people.git'
 Plugin 'guns/vim-sexp'
 Plugin 'kien/rainbow_parentheses.vim'
@@ -42,9 +42,13 @@ Plugin 'xoria256.vim'
 Plugin 'ChrisKempson/Tomorrow-Theme', {'rtp': 'vim/'}
 Plugin 'chrisbra/csv.vim'
 
+" Erlang Support
+Plugin 'jimenezrick/vimerl'
+
+" Elixir Support
+Plugin 'elixir-lang/vim-elixir'
+
 call vundle#end()
-" execute pathogen#infect()
-" execute pathogen#helptags()
 
 filetype plugin indent on
 
@@ -156,6 +160,8 @@ au FileType ruby setlocal sw=2 sts=2 et
 au BufRead,BufNewFile *.ad set filetype=asciidoc
 au FileType asciidoc setlocal textwidth=80
 autocmd filetype crontab setlocal nobackup nowritebackup
+
+au FileType xml setlocal equalprg=xmllint\ --format\ --recover\ -\ 2>/dev/null
 
 nnoremap <silent> <leader>w :bp \|sp \|bn \|bd <CR>
 
