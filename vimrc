@@ -153,6 +153,8 @@ inoremap <silent> <C-L> <ESC>A
 " Use CTRL-E to replace the original ',' mapping
 nnoremap <C-E> ,
 
+nmap <silent> <leader>vm V]M
+
 " Custom file extensions
 au BufRead,BufNewFile *.gradle set filetype=groovy
 au FileType yaml setlocal sw=2 sts=2 et
