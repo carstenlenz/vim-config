@@ -8,6 +8,7 @@ call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 Plugin 'kien/ctrlp.vim.git'
 Plugin 'Raimondi/delimitMate'
+Plugin 'tpope/vim-repeat'
 Plugin 'mattn/emmet-vim'
 Plugin 'mattn/gist-vim'
 Plugin 'scrooloose/nerdcommenter.git'
@@ -41,6 +42,7 @@ Plugin 'dagwieers/asciidoc-vim'
 Plugin 'xoria256.vim'
 Plugin 'ChrisKempson/Tomorrow-Theme', {'rtp': 'vim/'}
 Plugin 'chrisbra/csv.vim'
+Plugin 'derekwyatt/vim-scala'
 
 " Erlang Support
 Plugin 'jimenezrick/vimerl'
@@ -141,10 +143,21 @@ let mapleader = ","
 
 nnoremap <silent> <leader>ev :vsplit $MYVIMRC<CR>
 nnoremap <silent> <leader>sv :so $MYVIMRC<CR>
-nnoremap <silent> <leader>t :NERDTreeToggle<CR>
+
 nnoremap <F5> :buffers<CR>:buffer<Space>
 nnoremap <silent> <leader>/ :nohlsearch<CR>
-nnoremap <silent> <leader>b :CtrlPBuffer<CR>
+
+" NERDTree Bindings
+nnoremap <silent> <leader>tt :NERDTreeToggle<CR>
+nnoremap <silent> <leader>tf :NERDTreeFind<CR>
+
+" CtrlP Bindings
+noremap <silent> <leader>b :CtrlPBuffer<CR>
+nmap ,fb :CtrlPBuffer<cr>
+nmap ,ff :CtrlP .<cr>
+nmap ,fF :execute ":CtrlP " . expand('%:p:h')<cr>
+nmap ,fr :CtrlP<cr>
+nmap ,fm :CtrlPMixed<cr>
 
 cmap w!! w !sudo tee > /dev/null %
 
@@ -159,7 +172,7 @@ nmap <silent> <leader>vm V]M
 au BufRead,BufNewFile *.gradle set filetype=groovy
 au FileType yaml setlocal sw=2 sts=2 et
 au FileType ruby setlocal sw=2 sts=2 et
-au BufRead,BufNewFile *.ad set filetype=asciidoc
+au BufRead,BufNewFile *.ad,*.adoc set filetype=asciidoc
 au FileType asciidoc setlocal textwidth=80
 autocmd filetype crontab setlocal nobackup nowritebackup
 
