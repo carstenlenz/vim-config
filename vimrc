@@ -8,7 +8,6 @@ call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 Plugin 'kien/ctrlp.vim.git'
 Plugin 'Raimondi/delimitMate'
-Plugin 'tpope/vim-repeat'
 Plugin 'mattn/emmet-vim'
 Plugin 'mattn/gist-vim'
 Plugin 'scrooloose/nerdcommenter.git'
