@@ -42,6 +42,7 @@ Plugin 'xoria256.vim'
 Plugin 'ChrisKempson/Tomorrow-Theme', {'rtp': 'vim/'}
 Plugin 'chrisbra/csv.vim'
 Plugin 'derekwyatt/vim-scala'
+Plugin 'vim-scripts/bufkill.vim'
 
 " Erlang Support
 Plugin 'jimenezrick/vimerl'
@@ -91,8 +92,8 @@ colorscheme Tomorrow-Night
 syntax on
 
 " relativenumber is confusing to me
-" set relativenumber " centers '0' at cursor 
-set number " show linenumbers
+set relativenumber " centers '0' at cursor 
+" set number " show linenumbers
 
 set hidden
 set laststatus=2
@@ -151,12 +152,18 @@ nnoremap <silent> <leader>tt :NERDTreeToggle<CR>
 nnoremap <silent> <leader>tf :NERDTreeFind<CR>
 
 " CtrlP Bindings
+let g:ctrlp_open_new_file = 'r'
 noremap <silent> <leader>b :CtrlPBuffer<CR>
-nmap ,fb :CtrlPBuffer<cr>
-nmap ,ff :CtrlP .<cr>
-nmap ,fF :execute ":CtrlP " . expand('%:p:h')<cr>
-nmap ,fr :CtrlP<cr>
-nmap ,fm :CtrlPMixed<cr>
+nmap <leader>fb :CtrlPBuffer<cr>
+nmap <leader>ff :CtrlP .<cr>
+nmap <leader>fF :execute ":CtrlP " . expand('%:p:h')<cr>
+nmap <leader>fr :CtrlP<cr>
+nmap <leader>fm :CtrlPMixed<cr>
+
+" Fugitive bindings
+nmap <silent> <leader>gs :Gstatus<cr>
+nmap <silent> <leader>gd :Gdiff<cr>
+nmap <silent> <leader>gb :Gblame<cr>
 
 cmap w!! w !sudo tee > /dev/null %
 
@@ -183,3 +190,4 @@ nnoremap <silent> <leader>w :bp \|sp \|bn \|bd <CR>
 " au InsertEnter * hi Cursor guibg=green
 highlight Cursor guibg=orange guifg=black
 highlight Search guibg=purple guifg=NONE
+
