@@ -37,7 +37,8 @@ Plugin 'garbas/vim-snipmate.git'
 Plugin 'honza/vim-snippets.git'
 Plugin 'mattn/webapi-vim'
 Plugin 'tpope/vim-surround'
-Plugin 'dagwieers/asciidoc-vim'
+" Plugin 'dagwieers/asciidoc-vim'
+Plugin 'powerman/asciidoc', {'rtp': 'vim'}
 Plugin 'xoria256.vim'
 Plugin 'ChrisKempson/Tomorrow-Theme', {'rtp': 'vim/'}
 Plugin 'chrisbra/csv.vim'
@@ -73,7 +74,7 @@ set omnifunc=syntaxcomplete#Complete
 
 " Enable Airline with tabline
 let g:airline_powerline_fonts = 1
-let g:airline_theme = 'powerlineish'
+" let g:airline_theme = 'powerlineish'
 let g:airline#extensions#tabline#enabled = 1
 
 set guioptions+=c
