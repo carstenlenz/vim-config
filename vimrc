@@ -37,13 +37,12 @@ Plugin 'garbas/vim-snipmate.git'
 Plugin 'honza/vim-snippets.git'
 Plugin 'mattn/webapi-vim'
 Plugin 'tpope/vim-surround'
-" Plugin 'dagwieers/asciidoc-vim'
 Plugin 'powerman/asciidoc', {'rtp': 'vim'}
 Plugin 'xoria256.vim'
 Plugin 'ChrisKempson/Tomorrow-Theme', {'rtp': 'vim/'}
 Plugin 'chrisbra/csv.vim'
 Plugin 'derekwyatt/vim-scala'
-Plugin 'vim-scripts/bufkill.vim'
+Plugin 'bufkill.vim'
 
 " Erlang Support
 Plugin 'jimenezrick/vimerl'
@@ -67,6 +66,7 @@ elseif has('gui_macvim')
 "    set guifont=Consolas:h14
 "    set guifont=Anonymous\ Pro\ for\ Powerline:h15
     set guifont=Powerline\ Consolas:h14
+    set shell=/bin/bash\ -l
 endif
 
 "
