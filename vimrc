@@ -154,17 +154,20 @@ nnoremap <silent> <leader>tf :NERDTreeFind<CR>
 
 " CtrlP Bindings
 let g:ctrlp_open_new_file = 'r'
-noremap <silent> <leader>b :CtrlPBuffer<CR>
 nmap <leader>fb :CtrlPBuffer<cr>
 nmap <leader>ff :CtrlP .<cr>
 nmap <leader>fF :execute ":CtrlP " . expand('%:p:h')<cr>
 nmap <leader>fr :CtrlP<cr>
 nmap <leader>fm :CtrlPMixed<cr>
+nmap <leader>ft :CtrlPTag<cr>
 
 " Fugitive bindings
 nmap <silent> <leader>gs :Gstatus<cr>
 nmap <silent> <leader>gd :Gdiff<cr>
 nmap <silent> <leader>gb :Gblame<cr>
+
+" Tagbar
+nnoremap <silent> <leader>b :TagbarToggle<cr>
 
 cmap w!! w !sudo tee > /dev/null %
 
