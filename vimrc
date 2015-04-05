@@ -60,16 +60,14 @@ let $LANG='en'
 set encoding=utf-8
 
 if has('win32')
-"    set guifont=Consolas:h11:cANSI
     set guifont=Powerline_Consolas:h11:cANSI
 elseif has('gui_macvim')
-"    set guifont=Consolas:h14
-"    set guifont=Anonymous\ Pro\ for\ Powerline:h15
     set guifont=Powerline\ Consolas:h14
     set shell=/bin/bash\ -l
 endif
 
-"
+set ttimeoutlen=100
+
 set omnifunc=syntaxcomplete#Complete
 
 " Enable Airline with tabline
@@ -86,9 +84,13 @@ set guioptions-=L
 set t_Co=256
 
 " other schemes: xoria256, Tomorrow-Night
+" colorscheme xoria256
 colorscheme Tomorrow-Night
-" set background=dark
+set background=dark
 " colorscheme solarized
+
+highlight Cursor guibg=orange guifg=black
+" highlight Search guibg=purple guifg=NONE
 
 syntax on
 
@@ -190,8 +192,32 @@ au FileType xml setlocal equalprg=xmllint\ --format\ --recover\ -\ 2>/dev/null
 
 nnoremap <silent> <leader>w :bp \|sp \|bn \|bd <CR>
 
-" au InsertLeave * hi Cursor guibg=red
-" au InsertEnter * hi Cursor guibg=green
-highlight Cursor guibg=orange guifg=black
-highlight Search guibg=purple guifg=NONE
+" Try changing cursor in terminal mode
+" 1 or 0 -> blinking block
+" 2 -> solid block
+" 3 -> blinking underscore
+" 4 -> solid underscore
+" Recent versions of xterm (282 or above) also support
+" 5 -> blinking vertical bar
+" 6 -> solid vertical bar
+if exists('$ITERM_PROFILE')
+    " Insert mode
+    " use vertical line
+    let &t_SI = "\033[6 q"
+    " Other
+    " solid block
+    let &t_EI = "\033[2 q"
+
+    let leave_command = "\033[0 g"
+
+    if exists('$TMUX')
+        let &t_SI = "\033Ptmux;\033" . &t_SI . "\033\\"
+        let &t_EI = "\033Ptmux;\033" . &t_EI . "\033\\"
+        let leave_command = "\033Ptmux;\033" . leave_command . "\033\\" 
+    endif
+
+    " reset cursor when vim exits
+    execute ("autocmd VimLeave * silent !echo -ne " . leave_command)
+endif
+
 
