@@ -1,7 +1,7 @@
 
 set nocompatible  
-
 filetype off
+
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
@@ -52,6 +52,8 @@ Plugin 'elixir-lang/vim-elixir'
 
 call vundle#end()
 
+source $VIMRUNTIME/macros/matchit.vim 
+
 filetype plugin indent on
 
 " Force my gvim on windoze into english 
@@ -89,7 +91,6 @@ colorscheme Tomorrow-Night
 set background=dark
 " colorscheme solarized
 
-highlight Cursor guibg=orange guifg=black
 " highlight Search guibg=purple guifg=NONE
 
 syntax on
@@ -144,6 +145,8 @@ let g:paredit_smartjump=1
 
 let mapleader = ","
 
+nnoremap <silent> <F8> gg"+yG 
+
 nnoremap <silent> <leader>ev :vsplit $MYVIMRC<CR>
 nnoremap <silent> <leader>sv :so $MYVIMRC<CR>
 
@@ -189,6 +192,8 @@ au FileType asciidoc setlocal textwidth=80
 autocmd filetype crontab setlocal nobackup nowritebackup
 
 au FileType xml setlocal equalprg=xmllint\ --format\ --recover\ -\ 2>/dev/null
+
+highlight Cursor guibg=orange guifg=black
 
 nnoremap <silent> <leader>w :bp \|sp \|bn \|bd <CR>
 
