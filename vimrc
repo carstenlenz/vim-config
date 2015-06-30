@@ -43,6 +43,7 @@ Plugin 'ChrisKempson/Tomorrow-Theme', {'rtp': 'vim/'}
 Plugin 'chrisbra/csv.vim'
 Plugin 'derekwyatt/vim-scala'
 Plugin 'bufkill.vim'
+Plugin 'rizzatti/dash.vim'
 
 " Erlang Support
 Plugin 'jimenezrick/vimerl'
@@ -76,6 +77,7 @@ set omnifunc=syntaxcomplete#Complete
 let g:airline_powerline_fonts = 1
 " let g:airline_theme = 'powerlineish'
 let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#eclim#enabled = 1 
 
 set guioptions+=c
 set guioptions-=m
@@ -183,15 +185,24 @@ nnoremap <C-E> ,
 
 nmap <silent> <leader>vm V]M
 
-" Custom file extensions
-au BufRead,BufNewFile *.gradle set filetype=groovy
-au FileType yaml setlocal sw=2 sts=2 et
-au FileType ruby setlocal sw=2 sts=2 et
-au BufRead,BufNewFile *.ad,*.adoc set filetype=asciidoc
-au FileType asciidoc setlocal textwidth=80
-autocmd filetype crontab setlocal nobackup nowritebackup
+" Dash Integration
+nmap <silent> <leader>K <Plug>DashSearch
+nmap <silent> <leader>gK <Plug>DashGlobalSearch
 
-au FileType xml setlocal equalprg=xmllint\ --format\ --recover\ -\ 2>/dev/null
+" Custom file extensions
+augroup custom_filetypes
+    autocmd!
+    autocmd BufRead,BufNewFile *.gradle set filetype=groovy
+    autocmd BufRead,BufNewFile *.ad,*.adoc set filetype=asciidoc
+    
+    autocmd FileType yaml setlocal sw=2 sts=2 et
+    autocmd FileType ruby setlocal sw=2 sts=2 et
+    autocmd FileType asciidoc setlocal textwidth=80
+    autocmd filetype crontab setlocal nobackup nowritebackup
+    autocmd FileType xml setlocal equalprg=xmllint\ --format\ --recover\ -\ 2>/dev/null
+augroup end
+
+command! -nargs=0 FormatJson :%! jq '.' -a
 
 highlight Cursor guibg=orange guifg=black
 
