@@ -22,7 +22,7 @@ Plugin 'majutsushi/tagbar'
 Plugin 'tomtom/tlib_vim.git'
 Plugin 'MarcWeber/vim-addon-mw-utils.git'
 Plugin 'bling/vim-airline'
-Plugin 'tpope/vim-classpath.git'
+" Plugin 'tpope/vim-classpath.git'
 Plugin 'guns/vim-clojure-static.git'
 Plugin 'guns/vim-clojure-highlight.git'
 Plugin 'altercation/vim-colors-solarized'
@@ -65,7 +65,7 @@ set encoding=utf-8
 if has('win32')
     set guifont=Powerline_Consolas:h11:cANSI
 elseif has('gui_macvim')
-    set guifont=Powerline\ Consolas:h14
+    set guifont=Hack:h14
     set shell=/bin/bash\ -l
 endif
 
@@ -87,10 +87,11 @@ set guioptions-=L
 
 set t_Co=256
 
+" set background=light
+set background=dark
 " other schemes: xoria256, Tomorrow-Night
 " colorscheme xoria256
 colorscheme Tomorrow-Night
-set background=dark
 " colorscheme solarized
 
 " highlight Search guibg=purple guifg=NONE
@@ -145,26 +146,31 @@ let delimitMate_expand_cr=1
 
 let g:paredit_smartjump=1
 
-let mapleader = ","
+let mapleader = "\<Space>"
 
 nnoremap <silent> <F8> gg"+yG 
 
-nnoremap <silent> <leader>ev :vsplit $MYVIMRC<CR>
-nnoremap <silent> <leader>sv :so $MYVIMRC<CR>
+" nnoremap <silent> <leader>
+nnoremap <silent> <leader>ve :vsplit $MYVIMRC<CR>
+nnoremap <silent> <leader>vR :so $MYVIMRC<CR>
 
 nnoremap <F5> :buffers<CR>:buffer<Space>
 nnoremap <silent> <leader>/ :nohlsearch<CR>
 
 " NERDTree Bindings
-nnoremap <silent> <leader>tt :NERDTreeToggle<CR>
-nnoremap <silent> <leader>tf :NERDTreeFind<CR>
+nnoremap <silent> <leader>ft :NERDTreeToggle<CR>
+nnoremap <silent> <leader>pt :NERDTreeFind<CR>
 
 " CtrlP Bindings
+" ==============
+
+" open new files in current window
 let g:ctrlp_open_new_file = 'r'
-nmap <leader>fb :CtrlPBuffer<cr>
+" List of buffers
+nmap <leader>bb :CtrlPBuffer<cr>
 nmap <leader>ff :CtrlP .<cr>
 nmap <leader>fF :execute ":CtrlP " . expand('%:p:h')<cr>
-nmap <leader>fr :CtrlP<cr>
+nmap <leader>pf :CtrlP<cr>
 nmap <leader>fm :CtrlPMixed<cr>
 nmap <leader>ft :CtrlPTag<cr>
 
@@ -178,11 +184,13 @@ nnoremap <silent> <leader>b :TagbarToggle<cr>
 
 cmap w!! w !sudo tee > /dev/null %
 
+" in insert mode: create new line under current and switch to it
 inoremap <silent> <C-L> <ESC>A
 
 " Use CTRL-E to replace the original ',' mapping
-nnoremap <C-E> ,
+" nnoremap <C-E> ,
 
+" Visually mark current method/function
 nmap <silent> <leader>vm V]M
 
 " Dash Integration
