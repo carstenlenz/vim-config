@@ -6,15 +6,16 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 Plugin 'gmarik/Vundle.vim'
-Plugin 'kien/ctrlp.vim.git'
+
+
+Plugin 'ctrlpvim/ctrlp.vim.git'
 Plugin 'Raimondi/delimitMate'
 Plugin 'mattn/emmet-vim'
-Plugin 'mattn/gist-vim'
 Plugin 'scrooloose/nerdcommenter.git'
 Plugin 'scrooloose/nerdtree.git'
 Plugin 'tpope/vim-repeat.git'
-Plugin 'tpope/vim-sexp-mappings-for-regular-people.git'
 Plugin 'guns/vim-sexp'
+Plugin 'tpope/vim-sexp-mappings-for-regular-people.git'
 Plugin 'kien/rainbow_parentheses.vim'
 Plugin 'ervandew/supertab'
 Plugin 'scrooloose/syntastic'
@@ -22,54 +23,56 @@ Plugin 'majutsushi/tagbar'
 Plugin 'tomtom/tlib_vim.git'
 Plugin 'MarcWeber/vim-addon-mw-utils.git'
 Plugin 'bling/vim-airline'
+" This makes my vim slooow
 " Plugin 'tpope/vim-classpath.git'
-Plugin 'guns/vim-clojure-static.git'
-Plugin 'guns/vim-clojure-highlight.git'
-Plugin 'altercation/vim-colors-solarized'
 Plugin 'Lokaltog/vim-easymotion'
-Plugin 'tpope/vim-leiningen.git'
 Plugin 'tpope/vim-projectionist.git'
 Plugin 'tpope/vim-dispatch.git'
-Plugin 'tpope/vim-fireplace.git'
-Plugin 'tpope/vim-fugitive'
-Plugin 'jelera/vim-javascript-syntax'
 Plugin 'garbas/vim-snipmate.git'
 Plugin 'honza/vim-snippets.git'
 Plugin 'mattn/webapi-vim'
 Plugin 'tpope/vim-surround'
-Plugin 'powerman/asciidoc', {'rtp': 'vim'}
+Plugin 'chrisbra/csv.vim'
+Plugin 'bufkill.vim'
+Plugin 'tpope/vim-sleuth'
+" Setting a whole lot of useful defaults...
+Plugin 'tpope/vim-sensible'
+
+" Color schemes
 Plugin 'xoria256.vim'
 Plugin 'ChrisKempson/Tomorrow-Theme', {'rtp': 'vim/'}
-Plugin 'chrisbra/csv.vim'
+Plugin 'tomasr/molokai'
+Plugin 'altercation/vim-colors-solarized'
+
+" Languages
 Plugin 'derekwyatt/vim-scala'
-Plugin 'bufkill.vim'
-Plugin 'rizzatti/dash.vim'
-
-" Erlang Support
 Plugin 'jimenezrick/vimerl'
-
-" Elixir Support
 Plugin 'elixir-lang/vim-elixir'
+Plugin 'guns/vim-clojure-static.git'
+Plugin 'guns/vim-clojure-highlight.git'
+Plugin 'jelera/vim-javascript-syntax'
+Plugin 'powerman/asciidoc', {'rtp': 'vim'}
+
+" Tools
+Plugin 'tpope/vim-fireplace.git'
+Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-leiningen.git'
+Plugin 'mattn/gist-vim'
+Plugin 'rizzatti/dash.vim'
 
 call vundle#end()
 
 source $VIMRUNTIME/macros/matchit.vim 
 
-filetype plugin indent on
-
-" Force my gvim on windoze into english 
-set langmenu=en_US.UTF-8
-let $LANG='en'
-set encoding=utf-8
-
-if has('win32')
-    set guifont=Powerline_Consolas:h11:cANSI
-elseif has('gui_macvim')
+if has('gui_macvim')
     set guifont=Hack:h14
     set shell=/bin/bash\ -l
+    set guioptions+=c
+    set guioptions-=m
+    set guioptions-=T
+    set guioptions-=r
+    set guioptions-=L
 endif
-
-set ttimeoutlen=100
 
 set omnifunc=syntaxcomplete#Complete
 
@@ -79,38 +82,29 @@ let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#eclim#enabled = 1 
 
-set guioptions+=c
-set guioptions-=m
-set guioptions-=T
-set guioptions-=r
-set guioptions-=L
-
+" Terminal colors
 set t_Co=256
 
 " set background=light
 set background=dark
 " other schemes: xoria256, Tomorrow-Night
 " colorscheme xoria256
-colorscheme Tomorrow-Night
+" colorscheme Tomorrow-Night
 " colorscheme solarized
+colorscheme molokai
 
 " highlight Search guibg=purple guifg=NONE
 
-syntax on
-
-" relativenumber is confusing to me
 set relativenumber " centers '0' at cursor 
 " set number " show linenumbers
-
-set hidden
-set laststatus=2
-set lazyredraw
 set showmode
 set title
-set noerrorbells
+set cmdheight=2
 
 " Editor behaviour
-set autoread
+
+" Makes buffers hidden when opening new buffers instead of closing them
+set hidden 
 set nobackup
 set noswapfile
 
@@ -119,26 +113,21 @@ set undolevels=1000
 set wildignore=*.swp,*.bak,*.pyc,*.class
 
 " Editing
-set backspace=indent,eol,start
-
 set tabstop=4
 set shiftwidth=4
+" Use shiftwidth for indentation with '>' and '<"
 set shiftround
+" Tabs to spaces
 set expandtab
-set autoindent
 set copyindent
-set smarttab    " indent using shiftwidth not tabstop
+set virtualedit=all
 
 " Search
 set showmatch
 set ignorecase
 set smartcase
-set hlsearch
-set incsearch
 
-set ch=2
-set vb
-set virtualedit=all
+set visualbell
 
 " Plugin Options
 let delimitMate_expand_cr=1
@@ -152,7 +141,7 @@ nnoremap <silent> <F8> gg"+yG
 
 " nnoremap <silent> <leader>
 nnoremap <silent> <leader>ve :vsplit $MYVIMRC<CR>
-nnoremap <silent> <leader>vR :so $MYVIMRC<CR>
+nnoremap <silent> <leader>vS :so $MYVIMRC<CR>
 
 nnoremap <F5> :buffers<CR>:buffer<Space>
 nnoremap <silent> <leader>/ :nohlsearch<CR>
@@ -180,15 +169,12 @@ nmap <silent> <leader>gd :Gdiff<cr>
 nmap <silent> <leader>gb :Gblame<cr>
 
 " Tagbar
-nnoremap <silent> <leader>b :TagbarToggle<cr>
+nnoremap <silent> <leader>bt :TagbarToggle<cr>
 
 cmap w!! w !sudo tee > /dev/null %
 
 " in insert mode: create new line under current and switch to it
 inoremap <silent> <C-L> <ESC>A
-
-" Use CTRL-E to replace the original ',' mapping
-" nnoremap <C-E> ,
 
 " Visually mark current method/function
 nmap <silent> <leader>vm V]M
