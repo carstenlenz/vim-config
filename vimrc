@@ -33,10 +33,19 @@ Plugin 'honza/vim-snippets.git'
 Plugin 'mattn/webapi-vim'
 Plugin 'tpope/vim-surround'
 Plugin 'chrisbra/csv.vim'
-Plugin 'bufkill.vim'
+
+Plugin 'tpope/vim-unimpaired.git'
+
+" Provides :BUN :BD :BW that leaves windows intact
+Plugin 'qpkorr/vim-bufkill'
+
 Plugin 'tpope/vim-sleuth'
+
 " Setting a whole lot of useful defaults...
 Plugin 'tpope/vim-sensible'
+
+" Support Emacs bindings in insert mode
+Plugin 'maxbrunsfeld/vim-emacs-bindings'
 
 " Color schemes
 Plugin 'xoria256.vim'
@@ -59,6 +68,7 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-leiningen.git'
 Plugin 'mattn/gist-vim'
 Plugin 'rizzatti/dash.vim'
+Plugin 'rodjek/vim-puppet.git'
 
 call vundle#end()
 
@@ -66,7 +76,7 @@ source $VIMRUNTIME/macros/matchit.vim
 
 if has('gui_macvim')
     set guifont=Hack:h14
-    set shell=/bin/bash\ -l
+    " set shell=/bin/bash\ -l
     set guioptions+=c
     set guioptions-=m
     set guioptions-=T
@@ -85,13 +95,20 @@ let g:airline#extensions#eclim#enabled = 1
 " Terminal colors
 set t_Co=256
 
-" set background=light
-set background=dark
-" other schemes: xoria256, Tomorrow-Night
-" colorscheme xoria256
-" colorscheme Tomorrow-Night
-" colorscheme solarized
-colorscheme molokai
+if has('gui_running')
+    " set background=light
+    set background=dark
+    " colorscheme xoria256
+    " colorscheme Tomorrow-Night
+    colorscheme solarized
+    " colorscheme molokai
+else
+    let g:solarized_termcolors=256
+    set background=dark
+    " colorscheme solarized
+    colorscheme Tomorrow-Night
+    " colorscheme xoria256
+endif
 
 " highlight Search guibg=purple guifg=NONE
 
@@ -129,65 +146,142 @@ set smartcase
 
 set visualbell
 
+
 " Plugin Options
+" ==============
+
 let delimitMate_expand_cr=1
 " let loaded_delimitMate=1
 
+let g:ctrlp_open_new_file = 'r'  " open new files in current window
+
 let g:paredit_smartjump=1
+
+let g:syntastic_puppet_checkers = ['puppetlint']
+let g:syntastic_puppet_puppetlint_args = "--no-80chars-check --no-class_inherits_from_params_class-check --no-selector_inside_resource-check --no-variable_scope-check --no-puppet_url_without_modules-check"
+
+let g:BufKillCreateMappings=0
+
+
+" Bindings - sorted by group
+" ==========================
 
 let mapleader = "\<Space>"
 
-nnoremap <silent> <F8> gg"+yG 
+" Buffer bindings - prefix 'b'
+" ----------------------------
 
-" nnoremap <silent> <leader>
+" bb - List of buffers
+nmap <leader>bl :CtrlPBuffer<cr>                
+
+" bt - open list of tags of current buffer
+nnoremap <silent> <leader>bt :TagbarToggle<cr>  
+
+" delete buffer and keep window
+nnoremap <silent> <leader>bd :BD<cr>
+
+" delete buffer and close window
+nnoremap <silent> <leader>bD :bd<cr>
+
+" go to next buffer
+nnoremap <silent> <leader>bf :BF<cr>
+
+" go to previous buffer
+nnoremap <silent> <leader>bb :BB<cr>
+
+
+" File bindings - prefix 'f'
+" --------------------------
+" Toggle NERDTree from project root
+nnoremap <silent> <leader>ft :NERDTreeToggle<CR>            
+
+" Find file in current working dir
+nmap <leader>ff :CtrlP .<cr>                                
+
+" Find file in current file's directory
+nmap <leader>fF :execute ":CtrlP " . expand('%:p:h')<cr>    
+
+" Find files and buffers (mixed mode)
+nmap <leader>fm :CtrlPMixed<cr>                             
+
+
+" Project bindings - prefix 'p'
+" -----------------------------
+" Find file in project (from basedir)
+nmap <leader>pf :CtrlP<cr>                      
+
+" Toggle NERDTree and locate current file
+nnoremap <silent> <leader>pt :NERDTreeFind<CR>  
+
+
+" VIM bindings - prefix 'v'
+" -------------------------
 nnoremap <silent> <leader>ve :vsplit $MYVIMRC<CR>
 nnoremap <silent> <leader>vS :so $MYVIMRC<CR>
 
-nnoremap <F5> :buffers<CR>:buffer<Space>
-nnoremap <silent> <leader>/ :nohlsearch<CR>
-
-" NERDTree Bindings
-nnoremap <silent> <leader>ft :NERDTreeToggle<CR>
-nnoremap <silent> <leader>pt :NERDTreeFind<CR>
-
-" CtrlP Bindings
-" ==============
-
-" open new files in current window
-let g:ctrlp_open_new_file = 'r'
-" List of buffers
-nmap <leader>bb :CtrlPBuffer<cr>
-nmap <leader>ff :CtrlP .<cr>
-nmap <leader>fF :execute ":CtrlP " . expand('%:p:h')<cr>
-nmap <leader>pf :CtrlP<cr>
-nmap <leader>fm :CtrlPMixed<cr>
-nmap <leader>ft :CtrlPTag<cr>
-
-" Fugitive bindings
+" Git / Fugitive bindings
+" -----------------------
 nmap <silent> <leader>gs :Gstatus<cr>
 nmap <silent> <leader>gd :Gdiff<cr>
 nmap <silent> <leader>gb :Gblame<cr>
 
-" Tagbar
-nnoremap <silent> <leader>bt :TagbarToggle<cr>
+" Dash Integration - prefix 'k'
+" -----------------------------
+nmap <silent> <leader>kk <Plug>DashSearch
+nmap <silent> <leader>kK <Plug>DashGlobalSearch
 
-cmap w!! w !sudo tee > /dev/null %
+" Other bindings without group
+" ----------------------------
+nnoremap <silent> <F8> gg"+yG 
+nnoremap <silent> <leader>/ :nohlsearch<CR>
+nnoremap <F5> :buffers<CR>:buffer<Space>
+
+nmap <silent> <leader>vm V]M " Visually mark current method/function
+
+cmap w!! w !sudo tee >/dev/null %
 
 " in insert mode: create new line under current and switch to it
 inoremap <silent> <C-L> <ESC>A
 
-" Visually mark current method/function
-nmap <silent> <leader>vm V]M
+"" Fold Asciidoc files at sections and using nested folds for subsections
+" compute the folding level
+function! AsciidocLevel()
+    if getline(v:lnum) =~ '^== .*$'
+        return ">1"
+    endif
+    if getline(v:lnum) =~ '^=== .*$'
+        return ">2"
+    endif
+    if getline(v:lnum) =~ '^==== .*$'
+        return ">3"
+    endif
+    if getline(v:lnum) =~ '^===== .*$'
+        return ">4"
+    endif
+    if getline(v:lnum) =~ '^====== .*$'
+        return ">5"
+    endif
+    if getline(v:lnum) =~ '^======= .*$'
+        return ">6"
+    endif
+    return "="
+endfunction
+" TODO following does not work as folding is lost up reloading
+" autocmd Syntax asciidoc normal zR
 
-" Dash Integration
-nmap <silent> <leader>K <Plug>DashSearch
-nmap <silent> <leader>gK <Plug>DashGlobalSearch
 
 " Custom file extensions
 augroup custom_filetypes
     autocmd!
     autocmd BufRead,BufNewFile *.gradle set filetype=groovy
     autocmd BufRead,BufNewFile *.ad,*.adoc set filetype=asciidoc
+
+    " run the folding level method when asciidoc is here
+    autocmd Syntax asciidoc setlocal foldexpr=AsciidocLevel()
+    " enable folding method: expression on asciidoc
+    autocmd Syntax asciidoc setlocal foldmethod=expr
+    " start with text unfolded all the way
+    autocmd BufRead *.ad,*.adoc normal zR
     
     autocmd FileType yaml setlocal sw=2 sts=2 et
     autocmd FileType ruby setlocal sw=2 sts=2 et
