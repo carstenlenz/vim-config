@@ -22,7 +22,10 @@ Plugin 'scrooloose/syntastic'
 Plugin 'majutsushi/tagbar'
 Plugin 'tomtom/tlib_vim.git'
 Plugin 'MarcWeber/vim-addon-mw-utils.git'
-Plugin 'bling/vim-airline'
+
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+
 " This makes my vim slooow
 " Plugin 'tpope/vim-classpath.git'
 Plugin 'Lokaltog/vim-easymotion'
@@ -61,6 +64,7 @@ Plugin 'guns/vim-clojure-static.git'
 Plugin 'guns/vim-clojure-highlight.git'
 Plugin 'jelera/vim-javascript-syntax'
 Plugin 'powerman/asciidoc', {'rtp': 'vim'}
+Plugin 'fatih/vim-go'
 
 " Tools
 Plugin 'tpope/vim-fireplace.git'
@@ -76,6 +80,7 @@ source $VIMRUNTIME/macros/matchit.vim
 
 if has('gui_macvim')
     set guifont=Hack:h14
+    " set guifont=Powerline\ Consolas:h14
     " set shell=/bin/bash\ -l
     set guioptions+=c
     set guioptions-=m
@@ -89,8 +94,8 @@ set omnifunc=syntaxcomplete#Complete
 " Enable Airline with tabline
 let g:airline_powerline_fonts = 1
 " let g:airline_theme = 'powerlineish'
+let g:airline_theme='solarized'
 let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#eclim#enabled = 1 
 
 " Terminal colors
 set t_Co=256
@@ -288,6 +293,7 @@ augroup custom_filetypes
     autocmd FileType asciidoc setlocal textwidth=80
     autocmd filetype crontab setlocal nobackup nowritebackup
     autocmd FileType xml setlocal equalprg=xmllint\ --format\ --recover\ -\ 2>/dev/null
+    autocmd FileType json setlocal equalprg=jq\ '.'
 augroup end
 
 command! -nargs=0 FormatJson :%! jq '.' -a
