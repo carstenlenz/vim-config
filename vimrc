@@ -73,6 +73,7 @@ Plugin 'tpope/vim-leiningen.git'
 Plugin 'mattn/gist-vim'
 Plugin 'rizzatti/dash.vim'
 Plugin 'rodjek/vim-puppet.git'
+" Plugin 'ensime/ensime-vim'
 
 call vundle#end()
 
@@ -108,10 +109,10 @@ if has('gui_running')
     colorscheme solarized
     " colorscheme molokai
 else
-    let g:solarized_termcolors=256
+    " let g:solarized_termcolors=256
     set background=dark
-    " colorscheme solarized
-    colorscheme Tomorrow-Night
+    colorscheme solarized
+    " colorscheme Tomorrow-Night
     " colorscheme xoria256
 endif
 
@@ -155,7 +156,7 @@ set visualbell
 " Plugin Options
 " ==============
 
-let delimitMate_expand_cr=1
+let delimitMate_expand_cr=0
 " let loaded_delimitMate=1
 
 let g:ctrlp_open_new_file = 'r'  " open new files in current window
