@@ -5,5 +5,6 @@ if [[ -d $HOME/.vim ]]; then
 fi
 git clone https://github.com/carstenlenz/vim-config $HOME/.vim
 ln -s $HOME/.vim/vimrc $HOME/.vimrc
-git clone https://github.com/gmarik/Vundle.vim $HOME/.vim/bundle/Vundle.vim
-vim +PluginInstall +qall
+git clone https://github.com/k-takata/minpac.git \
+    ~/.vim/pack/minpac/opt/minpac
+#vim +PluginInstall +qall

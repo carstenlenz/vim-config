@@ -1,81 +1,91 @@
 
-set nocompatible  
+if &compatible
+  " `:set nocp` has many side effects. Therefore this should be done
+  " only when 'compatible' is set.
+  set nocompatible
+endif
+
 filetype off
 
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+if exists('*minpac#init')
+  " minpac is loaded.
+  call minpac#init()
+  call minpac#add('k-takata/minpac', {'type': 'opt'})
 
-Plugin 'gmarik/Vundle.vim'
+  " Additional plugins here.
 
+  call minpac#add('ctrlpvim/ctrlp.vim')
+  call minpac#add('Raimondi/delimitMate')
+  call minpac#add('mattn/emmet-vim')
+  call minpac#add('scrooloose/nerdcommenter')
+  call minpac#add('scrooloose/nerdtree')
+  call minpac#add('tpope/vim-repeat')
+  call minpac#add('guns/vim-sexp')
+  call minpac#add('tpope/vim-sexp-mappings-for-regular-people')
+  call minpac#add('kien/rainbow_parentheses.vim')
+  call minpac#add('ervandew/supertab')
+  call minpac#add('scrooloose/syntastic')
+  call minpac#add('majutsushi/tagbar')
+  call minpac#add('tomtom/tlib_vim')
+  call minpac#add('MarcWeber/vim-addon-mw-utils')
 
-Plugin 'ctrlpvim/ctrlp.vim.git'
-Plugin 'Raimondi/delimitMate'
-Plugin 'mattn/emmet-vim'
-Plugin 'scrooloose/nerdcommenter.git'
-Plugin 'scrooloose/nerdtree.git'
-Plugin 'tpope/vim-repeat.git'
-Plugin 'guns/vim-sexp'
-Plugin 'tpope/vim-sexp-mappings-for-regular-people.git'
-Plugin 'kien/rainbow_parentheses.vim'
-Plugin 'ervandew/supertab'
-Plugin 'scrooloose/syntastic'
-Plugin 'majutsushi/tagbar'
-Plugin 'tomtom/tlib_vim.git'
-Plugin 'MarcWeber/vim-addon-mw-utils.git'
+  call minpac#add('vim-airline/vim-airline')
+  call minpac#add('vim-airline/vim-airline-themes')
 
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
+  " This makes my vim slooow
+  " Plugin 'tpope/vim-classpath'
+  "
+  call minpac#add('easymotion/vim-easymotion')
+  call minpac#add('tpope/vim-projectionist')
+  call minpac#add('tpope/vim-dispatch')
+  call minpac#add('garbas/vim-snipmate')
+  call minpac#add('honza/vim-snippets')
+  call minpac#add('mattn/webapi-vim')
+  call minpac#add('tpope/vim-surround')
+  call minpac#add('chrisbra/csv.vim')
 
-" This makes my vim slooow
-" Plugin 'tpope/vim-classpath.git'
-Plugin 'Lokaltog/vim-easymotion'
-Plugin 'tpope/vim-projectionist.git'
-Plugin 'tpope/vim-dispatch.git'
-Plugin 'garbas/vim-snipmate.git'
-Plugin 'honza/vim-snippets.git'
-Plugin 'mattn/webapi-vim'
-Plugin 'tpope/vim-surround'
-Plugin 'chrisbra/csv.vim'
+  call minpac#add('tpope/vim-unimpaired')
 
-Plugin 'tpope/vim-unimpaired.git'
+  " Provides :BUN :BD :BW that leaves windows intact
+  call minpac#add('qpkorr/vim-bufkill')
 
-" Provides :BUN :BD :BW that leaves windows intact
-Plugin 'qpkorr/vim-bufkill'
+  call minpac#add('tpope/vim-sleuth')
 
-Plugin 'tpope/vim-sleuth'
+  " Setting a whole lot of useful defaults...
+  call minpac#add('tpope/vim-sensible')
 
-" Setting a whole lot of useful defaults...
-Plugin 'tpope/vim-sensible'
+  " Support Emacs bindings in insert mode
+  call minpac#add('maxbrunsfeld/vim-emacs-bindings')
+  
+  " Color schemes
+  call minpac#add('tomasr/molokai')
+  call minpac#add('altercation/vim-colors-solarized')
+  
+  " Languages
+  call minpac#add('derekwyatt/vim-scala')
+  call minpac#add('jimenezrick/vimerl')
+  call minpac#add('elixir-lang/vim-elixir')
+  call minpac#add('guns/vim-clojure-static')
+  call minpac#add('guns/vim-clojure-highlight')
+  call minpac#add('jelera/vim-javascript-syntax')
+  " call minpac#add('powerman/asciidoc', {'rtp': 'vim'}
+  call minpac#add('fatih/vim-go')
+  
+  " Tools
+  call minpac#add('tpope/vim-fireplace')
+  call minpac#add('tpope/vim-fugitive')
+  call minpac#add('shumphrey/fugitive-gitlab.vim')
+  call minpac#add('tpope/vim-leiningen')
+  call minpac#add('mattn/gist-vim')
+  call minpac#add('rizzatti/dash.vim')
+  call minpac#add('rodjek/vim-puppet')
+  " Plugin 'ensime/ensime-vim'
 
-" Support Emacs bindings in insert mode
-Plugin 'maxbrunsfeld/vim-emacs-bindings'
+endif
 
-" Color schemes
-Plugin 'xoria256.vim'
-Plugin 'ChrisKempson/Tomorrow-Theme', {'rtp': 'vim/'}
-Plugin 'tomasr/molokai'
-Plugin 'altercation/vim-colors-solarized'
-
-" Languages
-Plugin 'derekwyatt/vim-scala'
-Plugin 'jimenezrick/vimerl'
-Plugin 'elixir-lang/vim-elixir'
-Plugin 'guns/vim-clojure-static.git'
-Plugin 'guns/vim-clojure-highlight.git'
-Plugin 'jelera/vim-javascript-syntax'
-Plugin 'powerman/asciidoc', {'rtp': 'vim'}
-Plugin 'fatih/vim-go'
-
-" Tools
-Plugin 'tpope/vim-fireplace.git'
-Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-leiningen.git'
-Plugin 'mattn/gist-vim'
-Plugin 'rizzatti/dash.vim'
-Plugin 'rodjek/vim-puppet.git'
-" Plugin 'ensime/ensime-vim'
-
-call vundle#end()
+command! PackUpdate packadd minpac | source $MYVIMRC | call minpac#update('', {'do': 'call minpac#status()'})
+command! PackClean  packadd minpac | source $MYVIMRC | call minpac#clean()
+command! PackStatus packadd minpac | source $MYVIMRC | call minpac#status()
 
 source $VIMRUNTIME/macros/matchit.vim 
 
@@ -168,6 +178,7 @@ let g:syntastic_puppet_puppetlint_args = "--no-80chars-check --no-class_inherits
 
 let g:BufKillCreateMappings=0
 
+let g:fugitive_gitlab_domains = ['https://gitlab.aoe.com']
 
 " Bindings - sorted by group
 " ==========================
