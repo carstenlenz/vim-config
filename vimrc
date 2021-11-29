@@ -14,7 +14,8 @@ if exists('*minpac#init')
 
   " Additional plugins here.
 
-  call minpac#add('ctrlpvim/ctrlp.vim')
+  " call minpac#add('ctrlpvim/ctrlp.vim')
+  call minpac#add('junegunn/fzf.vim')
   call minpac#add('Raimondi/delimitMate')
   call minpac#add('mattn/emmet-vim')
   call minpac#add('scrooloose/nerdcommenter')
@@ -23,7 +24,8 @@ if exists('*minpac#init')
   call minpac#add('guns/vim-sexp')
   call minpac#add('tpope/vim-sexp-mappings-for-regular-people')
   call minpac#add('kien/rainbow_parentheses.vim')
-  call minpac#add('ervandew/supertab')
+  " call minpac#add('ervandew/supertab')
+  " call minpac#add('valloric/youcompleteme')
   call minpac#add('scrooloose/syntastic')
   call minpac#add('majutsushi/tagbar')
   call minpac#add('tomtom/tlib_vim')
@@ -36,6 +38,7 @@ if exists('*minpac#init')
   " Plugin 'tpope/vim-classpath'
   "
   call minpac#add('easymotion/vim-easymotion')
+  call minpac#add('justinmk/vim-sneak')
   call minpac#add('tpope/vim-projectionist')
   call minpac#add('tpope/vim-dispatch')
   call minpac#add('garbas/vim-snipmate')
@@ -60,25 +63,29 @@ if exists('*minpac#init')
   " Color schemes
   call minpac#add('tomasr/molokai')
   call minpac#add('altercation/vim-colors-solarized')
-  
+
+  " LSP support
+  " call minpac#add('natebosch/vim-lsc')
+  " call minpac#add('neoclide/coc.nvim', {'branch': 'v0.0.70', 'do':{-> system('./install.sh') }})
+
   " Languages
   call minpac#add('derekwyatt/vim-scala')
-  call minpac#add('jimenezrick/vimerl')
-  call minpac#add('elixir-lang/vim-elixir')
-  call minpac#add('guns/vim-clojure-static')
-  call minpac#add('guns/vim-clojure-highlight')
+  " call minpac#add('jimenezrick/vimerl')
+  " call minpac#add('elixir-lang/vim-elixir')
+  " call minpac#add('guns/vim-clojure-static')
+  " call minpac#add('guns/vim-clojure-highlight')
   call minpac#add('jelera/vim-javascript-syntax')
   " call minpac#add('powerman/asciidoc', {'rtp': 'vim'}
-  call minpac#add('fatih/vim-go')
+  "  call minpac#add('fatih/vim-go')
   
   " Tools
   call minpac#add('tpope/vim-fireplace')
   call minpac#add('tpope/vim-fugitive')
   call minpac#add('shumphrey/fugitive-gitlab.vim')
-  call minpac#add('tpope/vim-leiningen')
+  " call minpac#add('tpope/vim-leiningen')
   call minpac#add('mattn/gist-vim')
-  call minpac#add('rizzatti/dash.vim')
-  call minpac#add('rodjek/vim-puppet')
+  " call minpac#add('rizzatti/dash.vim')
+  " call minpac#add('rodjek/vim-puppet')
   " Plugin 'ensime/ensime-vim'
 
 endif
@@ -113,14 +120,14 @@ set t_Co=256
 
 if has('gui_running')
     " set background=light
-    set background=dark
+    set background=light
     " colorscheme xoria256
     " colorscheme Tomorrow-Night
     colorscheme solarized
     " colorscheme molokai
 else
     " let g:solarized_termcolors=256
-    set background=dark
+    set background=light
     colorscheme solarized
     " colorscheme Tomorrow-Night
     " colorscheme xoria256
@@ -233,8 +240,8 @@ nnoremap <silent> <leader>pt :NERDTreeFind<CR>
 
 " VIM bindings - prefix 'v'
 " -------------------------
-nnoremap <silent> <leader>ve :vsplit $MYVIMRC<CR>
-nnoremap <silent> <leader>vS :so $MYVIMRC<CR>
+nnoremap <silent> <leader>ve :vsplit ~/.vimrc<CR>
+nnoremap <silent> <leader>vS :so ~/.vimrc<CR>
 
 " Git / Fugitive bindings
 " -----------------------
@@ -292,6 +299,7 @@ augroup custom_filetypes
     autocmd!
     autocmd BufRead,BufNewFile *.gradle set filetype=groovy
     autocmd BufRead,BufNewFile *.ad,*.adoc set filetype=asciidoc
+    autocmd BufRead,BufNewFile *.sbt set filetype=scala
 
     " run the folding level method when asciidoc is here
     autocmd Syntax asciidoc setlocal foldexpr=AsciidocLevel()
